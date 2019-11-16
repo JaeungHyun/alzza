@@ -73,5 +73,5 @@ class PerceptronSoftmax(Regression):
 
 
 if __name__ == "__main__":
-    perceptron = PerceptronBinary()
+    perceptron = PerceptronSoftmax()
     perceptron.steel_exec(epoch_count=100)
