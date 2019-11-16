@@ -4,7 +4,7 @@ from regression import Regression
 
 class Perceptron(Regression):
     def __init__(self):
-        super.__init__()
+        super().__init__()
 
     def load_pulsar_dataset(self, adjust_ratio):
         df = pd.read_csv('data/chap02/pulsar_stars.csv')
@@ -15,14 +15,14 @@ class Perceptron(Regression):
 
         star_cnt, pulsar_cnt = len(stars), len(pulsars)
         if adjust_ratio:
-            data = np.zeros([2 * star_cnt, 9])
-            data[0:star_cnt, :] = np.asarray(stars, dtype='float32')
+            self.data = np.zeros([2 * star_cnt, 9])
+            self.data[0:star_cnt, :] = np.asarray(stars, dtype='float32')
             for n in range(star_cnt):
-                data[star_cnt + n] = np.asarray(pulsars[n % pulsar_cnt], dtype='float32')
+                self.data[star_cnt + n] = np.asarray(pulsars[n % pulsar_cnt], dtype='float32')
         else:
-            data = np.zeros([star_cnt + pulsar_cnt, 9])
-            data[0:star_cnt, :] = np.asarray(stars, dtype='float32')
-            data[star_cnt:, :] = np.asarray(pulsars, dtype='float32')
+            self.data = np.zeros([star_cnt + pulsar_cnt, 9])
+            self.data[0:star_cnt, :] = np.asarray(stars, dtype='float32')
+            self.data[star_cnt:, :] = np.asarray(pulsars, dtype='float32')
 
     def forward_postproc(self, output, y):
         entropy = self.sigmoid_cross_entropy_with_logits(y, output)
@@ -116,7 +116,7 @@ class Perceptron(Regression):
 
 if __name__ == "__main__":
     perceptron = Perceptron()
-    perceptron.pulsar_exec(epoch_count=10, adjust_ratio=1)
+    perceptron.pulsar_exec(epoch_count=100, adjust_ratio=1)
 
 
 
