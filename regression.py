@@ -74,9 +74,9 @@ class Regression:
         loss, aux_pp = self.forward_postproc(output, y)
         accuracy = self.eval_accuracy(output, y)
 
-        self.G_loss = 1.0
-        self.G_output = self.backprop_postproc(self.G_loss, aux_pp)
-        self.backprop_neuralnet(self.G_output, aux_nn)
+        G_loss = 1.0
+        G_output = self.backprop_postproc(G_loss, aux_pp)
+        self.backprop_neuralnet(G_output, aux_nn)
 
         return loss, accuracy
 
