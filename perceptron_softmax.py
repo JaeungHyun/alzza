@@ -4,7 +4,7 @@ from regression import Regression
 import csv
 
 
-class PerceptronBinary(Regression):
+class PerceptronSoftmax(Regression):
     def load_steel_dataset(self):
         ## pandas로 불러오는 것 적용하기
         with open('data/chap03/faults.csv') as csvfile:
