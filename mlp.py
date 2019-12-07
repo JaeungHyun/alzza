@@ -17,7 +17,7 @@ class MLP(Regression):
 
     def forward_neuralnet_hidden1(self, x):
         self.hidden = self.relu(np.matmul(x, self.pm_hidden['w']) + self.pm_hidden['b'])
-        self.output = np.matmul(self.hidden, self.pm_output['w'] + self.pm_output['b'])
+        self.output = np.matmul(self.hidden, self.pm_output['w']) + self.pm_output['b']
 
         return self.output, [x, self.hidden]
 
