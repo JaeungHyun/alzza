@@ -126,5 +126,5 @@ class Regression:
 
     def abalone_exec(self, epoch_count=10, mb_size=10, report=1):
         self.load_abalone_dataset()
-        self.init_model()c
+        self.init_model()
         self.train_and_test(epoch_count, mb_size, report)
