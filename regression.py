@@ -123,3 +123,8 @@ class Regression:
     def eval_accuracy(self, output, y):
         mdiff = np.mean(np.abs((output - y) / y))
         return 1 - mdiff
+
+    def abalone_exec(self, epoch_count=10, mb_size=10, report=1):
+        self.load_abalone_dataset()
+        self.init_model()c
+        self.train_and_test(epoch_count, mb_size, report)

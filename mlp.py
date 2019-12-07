@@ -1,8 +1,10 @@
 from regression import Regression
+from perceptron import Perceptron
+from perceptron_softmax import PerceptronSoftmax
 import numpy as np
 
 
-class MLP(Regression):
+class MLP(Regression, Perceptron, PerceptronSoftmax):
     def __init__(self):
         super().__init__()
 
@@ -129,7 +131,7 @@ class MLP(Regression):
 if __name__ == "__main__":
     mlp = MLP()
     mlp.load_abalone_dataset()
-    mlp.set_hidden(4)
+    mlp.set_hidden([12, 6])
     mlp.init_model()
     mlp.train_and_test(epoch_count=50, mb_size=10, report=10)
 
