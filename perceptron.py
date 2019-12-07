@@ -1,10 +1,12 @@
 import numpy as np
 import pandas as pd
 from regression import Regression
+from mlp import MLP
 
-class Perceptron(Regression):
-    def __init__(self):
-        super().__init__()
+
+class Perceptron(Regression, MLP):
+    def __init__(self, layer):
+        super().__init__(layer)
 
     def load_pulsar_dataset(self, adjust_ratio):
         df = pd.read_csv('data/chap02/pulsar_stars.csv')
@@ -115,8 +117,8 @@ class Perceptron(Regression):
 
 
 if __name__ == "__main__":
-    perceptron = Perceptron()
-    perceptron.pulsar_exec(epoch_count=100, adjust_ratio=1)
+    perceptron = Perceptron([6])
+    perceptron.pulsar_exec(epoch_count=100, adjust_ratio=1, report=10)
 
 
 

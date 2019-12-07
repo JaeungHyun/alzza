@@ -2,9 +2,10 @@ import numpy as np
 import pandas as pd
 from regression import Regression
 import csv
+from mlp import MLP
 
 
-class PerceptronSoftmax(Regression):
+class PerceptronSoftmax(Regression, MLP):
     def load_steel_dataset(self):
         ## pandas로 불러오는 것 적용하기
         with open('data/chap03/faults.csv') as csvfile:
@@ -73,5 +74,5 @@ class PerceptronSoftmax(Regression):
 
 
 if __name__ == "__main__":
-    perceptron = PerceptronSoftmax()
-    perceptron.steel_exec(epoch_count=100)
+    perceptron = PerceptronSoftmax([12, 6, 4])
+    perceptron.steel_exec(epoch_count=100, report = 10)

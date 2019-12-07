@@ -1,13 +1,7 @@
-from regression import Regression
-from perceptron import Perceptron
-from perceptron_softmax import PerceptronSoftmax
 import numpy as np
 
 
-class MLP(Regression, Perceptron, PerceptronSoftmax):
-    def __init__(self):
-        super().__init__()
-
+class MLP:
     def init_model_hidden1(self):
         self.pm_hidden = self.alloc_param_pair([self.input_cnt, self.hidden_cnt])
         self.pm_output = self.alloc_param_pair([self.hidden_cnt, self.output_cnt])
@@ -126,13 +120,3 @@ class MLP(Regression, Perceptron, PerceptronSoftmax):
             self.hidden_config = None
         else:
             self.hidden_config = info
-
-
-if __name__ == "__main__":
-    mlp = MLP()
-    mlp.load_abalone_dataset()
-    mlp.set_hidden([12, 6])
-    mlp.init_model()
-    mlp.train_and_test(epoch_count=50, mb_size=10, report=10)
-
-

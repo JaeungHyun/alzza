@@ -1,13 +1,15 @@
 import numpy as np
 import pandas as pd
+from mlp import MLP
 
 
-class Regression:
-    def __init__(self):
+class Regression(MLP):
+    def __init__(self, layer):
         np.random.seed(1234)
         self.RND_MEAN = 0
         self.RND_STD = 0.0030
         self.LEARNING_RATE = 0.001
+        self.set_hidden(layer)
 
     def load_abalone_dataset(self):
         df = pd.read_csv('data/chap01/abalone.csv', header=None, skiprows=1)
@@ -23,13 +25,8 @@ class Regression:
                 self.data[index, 1] = 1
             if row[0] == 'F':
                 self.data[index, 2] = 1
-        
-            self.data[:, 3:] = df.loc[:, 1:]
 
-    def init_model(self):
-        self.weight = np.random.normal(self.RND_MEAN, self.RND_STD, 
-                                        [self.input_cnt, self.output_cnt])
-        self.bias = np.zeros([self.output_cnt])
+            self.data[:, 3:] = df.loc[:, 1:]
 
     def train_and_test(self, epoch_count, mb_size, report):
         step_count = self.arrange_data(mb_size)
@@ -85,19 +82,6 @@ class Regression:
         accuracy = self.eval_accuracy(output, y)
         return accuracy
 
-    def forward_neuralnet(self, x):
-        output = np.matmul(x, self.weight) + self.bias
-        return output, x
-
-    def backprop_neuralnet(self, G_output, x):
-        g_output_w = x.transpose()
-
-        G_w = np.matmul(g_output_w, G_output)
-        G_b = np.sum(G_output, axis=0)
-
-        self.weight -= self.LEARNING_RATE * G_w
-        self.bias -= self.LEARNING_RATE * G_b
-
     def forward_postproc(self, output, y):
         diff = output - y
         square = np.square(diff)
@@ -128,3 +112,8 @@ class Regression:
         self.load_abalone_dataset()
         self.init_model()
         self.train_and_test(epoch_count, mb_size, report)
+
+
+if __name__ == "__main__":
+    regression = Regression([6])
+    regression.abalone_exec(epoch_count=100, report=10)
