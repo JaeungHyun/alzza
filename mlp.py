@@ -1,5 +1,5 @@
-import numpy as np
-
+#import numpy as np
+import cupy as np
 
 class MLP:
     def init_model_hidden1(self):

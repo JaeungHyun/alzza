@@ -1,4 +1,5 @@
-import numpy as np
+#import numpy as np
+import cupy as np
 import pandas as pd
 from regression import Regression
 from mlp import MLP

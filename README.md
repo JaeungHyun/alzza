@@ -9,3 +9,4 @@
 To-Do list
 * csv -> pandas 사용
 * Julia로 포팅
+* cupy 지원

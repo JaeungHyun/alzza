@@ -1,4 +1,5 @@
-import numpy as np
+#import numpy as np
+import cupy as np
 import pandas as pd
 from regression import Regression
 import csv
@@ -75,4 +76,4 @@ class PerceptronSoftmax(Regression, MLP):
 
 if __name__ == "__main__":
     perceptron = PerceptronSoftmax([12, 6, 4])
-    perceptron.steel_exec(epoch_count=100, report = 10)
+    perceptron.steel_exec(epoch_count=100, report=10)
