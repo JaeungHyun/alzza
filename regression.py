@@ -1,5 +1,5 @@
-#import numpy as np
-import cupy as np
+import numpy as np
+#import cupy as np
 import pandas as pd
 from mlp import MLP
 
@@ -117,4 +117,6 @@ class Regression(MLP):
 
 if __name__ == "__main__":
     regression = Regression([6])
-    regression.abalone_exec(epoch_count=100, report=10)
+    regression.abalone_exec(epoch_count=10, report=10)
+    print(regression.data)
+

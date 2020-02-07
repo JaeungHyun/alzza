@@ -1,5 +1,5 @@
-#import numpy as np
-import cupy as np
+import numpy as np
+#import cupy as np
 import pandas as pd
 from regression import Regression
 import csv
@@ -28,6 +28,8 @@ class PerceptronSoftmax(Regression, MLP):
     def backprop_postproc(self, G_loss, aux):
         y, output, entropy = aux
 
+        # For debugging
+        print(entropy.shape)
         g_loss_entropy = 1.0 / np.prod(entropy.shape)
         g_entropy_output = self.softmax_cross_entropy_with_logits_derv(y, output)
 
@@ -75,5 +77,5 @@ class PerceptronSoftmax(Regression, MLP):
 
 
 if __name__ == "__main__":
-    perceptron = PerceptronSoftmax([12, 6, 4])
-    perceptron.steel_exec(epoch_count=100, report=10)
+    perceptronSoftmax = PerceptronSoftmax([12, 6, 4])
+    perceptronSoftmax.steel_exec(epoch_count=100, report=10)
